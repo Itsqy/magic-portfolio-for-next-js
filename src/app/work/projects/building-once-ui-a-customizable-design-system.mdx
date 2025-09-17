@@ -1,45 +1,62 @@
 ---
-title: "Building Once UI, a Customizable Design System"
+title: "Wardenn : What to wear on date"
 publishedAt: "2024-04-08"
 summary: "Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration."
 images:
-  - "/images/projects/project-01/cover-01.jpg"
+  - "/images/projects/project-01/wardenn.jpg"
   - "/images/projects/project-01/cover-02.jpg"
   - "/images/projects/project-01/cover-03.jpg"
   - "/images/projects/project-01/cover-04.jpg"
 team:
-  - name: "Selene Yu"
-    role: "Software Engineer"
-    avatar: "/images/avatar.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
-  - name: "Lorant One"
+  - name: "Muhammad Rifqi Syatria"
+    role: "Developer"
+    avatar: "/images/syatria_potrait.jpeg"
+    linkedIn: "https://www.linkedin.com/in/syatria/"
+  - name: "Dicky Baryadi"
     role: "Design Engineer"
-    avatar: "/images/projects/project-01/avatar-01.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
+    linkedIn: "-"
+  - name: "Adithya Firmansyaah Putra"
+    role: "Design Engineer"
+    linkedIn: "-"
+  - name: "Filza Rizki Ramadhan"
+    role: "Developer Engineer"
+    linkedIn: "-"
 ---
 
 ## Overview
 
-Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration.
 
-## Key Features
+Wardenn is a mobile app that helps men decide what to wear on a date, effortlessly. By using their own wardrobe and choosing the occasion, users get outfit suggestions that are stylish, practical, and personalized.
 
-- **Component Library**: Built a set of modular, reusable UI components using React and styled-components in Next.js, focusing on accessibility and responsiveness.
-- **Theming and Customization**: Integrated a theming system that allows easy switching and customization of color palettes, typography, and layout styles using CSS variables and Figma tokens.
-- **Figma Integration**: Collaborated closely with designers by setting up a shared design library in Figma. This library was synchronized with the codebase, ensuring design handoffs were seamless and that design tokens remained consistent across both platforms.
-- **Documentation and Usage Guidelines**: Developed comprehensive documentation with Storybook to showcase components, usage patterns, and best practices, ensuring the design system is easy to adopt by other teams.
+Whether it’s a casual coffee date, a beach day, or a party night, Wardenn offers looks that match the vibe and boost confidence. Users can upload their clothes, categorize them by type and color, and receive complete outfit recommendations along with style tags like “clean fit” or “laid-back.”
 
-## Technologies Used
+The app is designed for Gen-Z and young adults who care about how they show up but don’t want to overthink their outfits. Wardenn’s sleek interface, smart tips, and visual approach make fashion feel approachable, fun, and expressive.
 
-- **Next.js**: For fast, server-rendered React applications.
-- **Figma**: For creating and managing design assets and prototypes.
-- **Styled-Components**: For styling React components with a modular, themable approach.
-- **Storybook**: For building an interactive, documented component library.
+# Key Features
 
-## Challenges and Learnings
+- **Wardrobe Ingestion & Tagging**: Users upload clothing photos. A Core ML model detects type (e.g., T-shirt, sneakers), color, and seasonality. Users can manually adjust for accuracy.
+- **Occasion-Based Outfit Suggestions**: Users choose an occasion (e.g., coffee date, beach day, party night). The app generates complete outfits that match the vibe, weather, and user's style preferences.
+- **Style Tags & AI-Powered Explanations**: An OpenAI LLM adds style tags like *clean fit* or *laid-back* and generates short outfit rationales (“neutral base with pop-color sneakers”).
+- **Smart Variation & Tips**: Users get suggestions like alternative pieces, layering ideas, or temperature-based adjustments (“add a light jacket under 22°C”).
+- **Offline-First Design**: All wardrobe and preference data is stored locally using SwiftData. Outfit logic works without internet. Only lightweight prompts (not photos) are sent to OpenAI when needed.
+- **Wardrobe Management Tools**: Create collections (e.g., “Summer Trip”), mark favorites, track “last worn” and wear-count to prevent outfit repeats.
+- **Privacy-Centered**: Clothing recognition runs fully on-device. No wardrobe images are shared unless user opts in.
 
-One key challenge was balancing the need for flexibility with the desire to maintain design consistency. The solution involved creating well-defined design tokens and establishing clear guidelines for when and how components could be customized. Additionally, setting up effective collaboration workflows between designers and developers using Figma and Git was a learning experience that greatly improved the process.
+# Technologies Used
 
-## Outcome
+- **Swift & SwiftUI**: Declarative UI with reusable components like `OutfitCard`, `StyleTagView`, `ColorSwatch`, etc.
+- **SwiftData**: Local database for `Garment`, `Outfit`, `Occasion`, and `UserPreference`. Enables derived attributes and seamless local state.
+- **Core ML + Vision**: On-device ML model classifies clothing and extracts dominant colors. Uses Vision framework for preprocessing.
+- **OpenAI LLM**: Used for generating style tags and outfit captions. Prompts are built from structured wardrobe data, not photos.
+- **NavigationStack**: Enables clear, deep-linkable navigation across Onboarding → Wardrobe → Occasion → Suggestions → Outfit Review.
+- **Image Handling**: Uses Kingfisher (or Nuke) for fast, memory-safe image loading and caching.
+- **Concurrency**: Swift’s `async/await` and `TaskGroup` for parallel processing of images, API calls, and local filtering.
+- **Testing Tools**: XCTest for logic testing, Xcode Previews for UI testing, SwiftLint for consistency.
 
-The design system is now actively used across multiple projects, leading to faster development cycles, fewer design inconsistencies, and improved collaboration between design and development teams. It has become a foundation for scaling our products efficiently while ensuring a cohesive user experience.
+# Challenges and Learnings
+
+One major challenge was making AI feel personal without overstepping on user privacy. We chose a hybrid approach—CoreML runs recognition locally, while the LLM only receives descriptive metadata. Another learning curve was building flexible outfit logic that supports rules (e.g., matching footwear with pants) yet remains explainable and fun. Lastly, we found that styling SwiftUI components with dynamic theming and gesture feedback was key to making the app feel modern and expressive.
+
+# Outcome
+
+Wardenn helps users look great without overthinking. The blend of on-device wardrobe logic, stylish UI, and AI-powered style commentary provides a personal fashion assistant experience. The system is scalable, fast, and private by default—making it ideal for Gen-Z and young adult users who value individuality and ease. With a reusable SwiftUI component set and modular architecture, the app is ready to expand to new features like weather integration, seasonal wardrobe planning, and shareable outfit looks.
